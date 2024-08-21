@@ -11,7 +11,7 @@
 11.Validation
 12.Authentication
 13.Implement Sign Out
-14.updateProfile api
+14.updateProfile api from redux store
 
 # Planning Features:
 
