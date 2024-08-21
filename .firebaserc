@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "NGPT": "netflixgpt-117ea"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
