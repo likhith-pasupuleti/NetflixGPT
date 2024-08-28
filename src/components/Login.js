@@ -2,23 +2,23 @@ import Header from "./Header";
 import { BACKGROUND_URL } from "../utils/constants";
 import { useState } from "react";
 import Validate from "../utils/Validate";
+import { USER_PROFILE_URL } from "../utils/constants";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/fireBase";
-import { useNavigate } from "react-router-dom";
-import { updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
 const Login = () => {
-  const navigate = useNavigate();
   const [signIn, setSignIn] = useState(true);
   const [updateError, setUpdateError] = useState(null);
   const [emailValue, setEmailValue] = useState("");
   const [pwdValue, setPwdValue] = useState("");
   const [fullNameValue, setFullNameValue] = useState("");
+
   const dispatch = useDispatch();
 
   const toggleSignInForm = () => {
@@ -29,41 +29,48 @@ const Login = () => {
     const message = Validate(emailValue, pwdValue);
     setUpdateError(message);
 
+    if (message) return;
+
     if (!signIn) {
+      // Sign Up Logic
       createUserWithEmailAndPassword(auth, emailValue, pwdValue)
         .then((userCredential) => {
           const user = userCredential.user;
-          // Update the user's profile with the full name and photoURL
-          return updateProfile(user, {
+          updateProfile(user, {
             displayName: fullNameValue,
-            photoURL: "https://avatars.githubusercontent.com/u/143747986?v=4",
-          });
-        })
-        .then(() => {
-          // Profile updated successfully, now navigate to browse or perform other actions
-          const { email, displayName, photoURL } = auth.currentUser;
-          dispatch(
-            addUser({
-              email: email,
-              displayName: displayName,
-              photoURL: photoURL,
+            photoURL: USER_PROFILE_URL,
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
             })
-          );
-          navigate("/browse");
-        })
-        .catch((error) => {
-          setUpdateError(error.code + "-" + error.message);
-        });
-    } else {
-      signInWithEmailAndPassword(auth, emailValue, pwdValue)
-        .then((userCredential) => {
-          // Signed in
-          navigate("/browse");
+            .catch((error) => {
+              setUpdateError(error.message);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setUpdateError(errorCode + "--" + errorMessage);
+          setUpdateError(errorCode + "-" + errorMessage);
+        });
+    } else {
+      // Sign In Logic
+      signInWithEmailAndPassword(auth, emailValue, pwdValue)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setUpdateError(errorCode + "-" + errorMessage);
         });
     }
   };
@@ -76,13 +83,16 @@ const Login = () => {
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
       </div>
       <form
-        onSubmit={(e) => e.preventDefault()}
-        className="absolute w-3/12 h-3/4 bg-black bg-opacity-50 p-20 my-44 mx-auto left-0 right-0  text-white"
+        onSubmit={(e) => {
+          e.preventDefault();
+          signInValidation();
+        }}
+        className="absolute w-3/12 h-3/4 bg-black bg-opacity-50 p-20 my-44 mx-auto left-0 right-0 text-white"
       >
         <h1 className="font-bold text-4xl px-4">
           {signIn ? "Sign In" : "Sign Up"}
         </h1>
-        {signIn || (
+        {!signIn && (
           <div className="relative">
             <input
               type="text"
@@ -140,7 +150,7 @@ const Login = () => {
         <p className="text-red-600">{updateError}</p>
 
         <button
-          onClick={signInValidation}
+          type="submit"
           className="p-4 m-4 bg-red-600 w-full font-bold rounded-md"
         >
           {signIn ? "Sign In" : "Sign Up"}
@@ -156,4 +166,5 @@ const Login = () => {
     </div>
   );
 };
+
 export default Login;
