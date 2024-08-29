@@ -9,8 +9,20 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YWY4MDM2MWY3NTlkNzM3N2FiNTM1MmI1NWUxOGMyMSIsIm5iZiI6MTcyNDcyNDM3NS4wODYzMTksInN1YiI6IjY2Y2QzMzc3ZmRhYzdhMzE0YTRkZjJhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xywi7EeTZDRdaJXvgPmvp8A91YU-sNNook8EdUx2MNE",
+    Authorization: "Bearer " + process.env.REACT_APP_TMDB_KEY,
   },
 };
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500/";
+export const SUPPORTED_LANGUAGES = [
+  {
+    identifier: "en",
+    name: "English",
+  },
+  { identifier: "telugu", name: "Telugu" },
+  {
+    identifier: "hindi",
+    name: "Hindi",
+  },
+  { identifier: "spanish", name: "Spanish" },
+];
+export const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_KEY;

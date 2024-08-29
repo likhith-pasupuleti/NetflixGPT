@@ -1,41 +1,52 @@
-#NETFLIX GPT (Features)
+## #NETFLIX GPT (Features)
 
-1. Build with React, Redux, Tailwind, TMDB API, CHATGPT API, Adaptable for all of the devices
-2. Create React App
-3. Configured TailwindCSS
-4. Header
-5. Routing of App
-6. Login Form
-7. Sign up Form
-8. Form Validation
-9. useRef Hook
-10. Firebase Setup
-11. Deploying our app to production
-12. Create SignUp User Account
-13. Implement Sign In user Api
-14. Created Redux Store with userSlice
-15. Implemented Sign out
-16. Update Profile
-17. BugFix: Sign up user displayName and profile picture update
-18. BugFix: if the user is not logged in Redirect /browse to Login Page and vice-versa
-19. Unsubscibed to the onAuthStateChanged callback
-20. Add hardcoded values to the constants file
-21. Regiter TMDB API & create an app & get access token
-22. Get Data from TMDB now playing movies list API
-23. Custom Hook for Now Playing Movies
-24. Create movieSlice
-25. Update Store with movies Data
-26. Planning for MainContauiner & secondary container
-27. Fetch Data for Trailer Video
-28. Update Store with Trailer Video Data
-29. Embedded the Yotube video and make it autoplay and mute
-30. Tailwind Classes to make Main Container look awesome
-31. Build Secondary Component
-32. Build Movie List
-33. build Movie Card
-34. TMDB Image CDN URL
-35. Made the Browsre page amazing with Tailwind CSS
-36. usePopularMovies Custom hook
+Build with React, Redux, Tailwind, TMDB API, CHATGPT API, Adaptable for all of the devices
+Create React App
+Header
+Routing of App
+Login Form
+Sign up Form
+Form Validation
+useRef Hook
+Firebase Setup
+Deploying our app to production
+Create SignUp User Account
+Implement Sign In user Api
+Created Redux Store with userSlice
+Implemented Sign out
+Update Profile
+BugFix: Sign up user displayName and profile picture update
+BugFix: if the user is not logged in Redirect /browse to Login Page and vice-versa
+Unsubscibed to the onAuthStateChanged callback
+Add hardcoded values to the constants file
+Regiter TMDB API & create an app & get access token
+Get Data from TMDB now playing movies list API
+Custom Hook for Now Playing Movies
+Create movieSlice
+Update Store with movies Data
+Planning for MainContauiner & secondary container
+Fetch Data for Trailer Video
+Update Store with Trailer Video Data
+Embedded the Yotube video and make it autoplay and mute
+Tailwind Classes to make Main Container look awesome
+Build Secondary Component
+Build Movie List
+build Movie Card
+TMDB Image CDN URL
+Made the Browsre page amazing with Tailwind CSS
+usePopularMovies Custom hook
+GPT Search Page
+GPT Search Bar
+(BONUS) Multi-language Feature in our App)
+Get Open AI Api Key
+Gpt Search API Call
+fetched gptMoviesSuggestions from TMDB
+created gptSlice added data
+Resused Movie List component to make movie suggestion container
+Memoization
+Added .env file
+Adding .env file to gitignore
+Made our Site Responsive
 
 # Planning Features:
 

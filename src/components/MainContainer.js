@@ -12,7 +12,7 @@ const MainContainer = () => {
   const { original_title, overview, id } = mainMovie;
 
   return (
-    <div className="relative top-[-12rem]">
+    <div className="relative md:top-[-12rem] pt-[49%] sm:pt-[0]">
       {" "}
       {/* Adjust this value as needed */}
       <VideoTitle title={original_title} overview={overview} />

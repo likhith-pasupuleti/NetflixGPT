@@ -65,7 +65,6 @@ const Login = () => {
       signInWithEmailAndPassword(auth, emailValue, pwdValue)
         .then((userCredential) => {
           // Signed in
-          const user = userCredential.user;
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -79,7 +78,11 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute inset-0">
-        <img src={BACKGROUND_URL} alt="bg" className="w-full h-full" />
+        <img
+          src={BACKGROUND_URL}
+          alt="bg"
+          className="w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
       </div>
       <form
@@ -87,9 +90,9 @@ const Login = () => {
           e.preventDefault();
           signInValidation();
         }}
-        className="absolute w-3/12 h-3/4 bg-black bg-opacity-50 p-20 my-44 mx-auto left-0 right-0 text-white"
+        className="absolute w-full md:w-3/12 h-3/4 bg-black bg-opacity-50 p-20 my-44 mx-auto left-0 right-0 text-white"
       >
-        <h1 className="font-bold text-4xl px-4">
+        <h1 className="font-bold text-lg md:text-4xl px-4">
           {signIn ? "Sign In" : "Sign Up"}
         </h1>
         {!signIn && (
@@ -134,7 +137,7 @@ const Login = () => {
             type="password"
             id="password"
             value={pwdValue}
-            className="peer p-5 m-4 w-full rounded-md bg-black bg-opacity-10 border border-white"
+            className="peer p-5 m-4 md:w-full rounded-md bg-black bg-opacity-10 border border-white"
             onChange={(e) => setPwdValue(e.target.value)}
           />
           <label
@@ -156,7 +159,7 @@ const Login = () => {
           {signIn ? "Sign In" : "Sign Up"}
         </button>
 
-        <p className="p-4 text-xl" onClick={toggleSignInForm}>
+        <p className="p-4 text-md md:text-xl" onClick={toggleSignInForm}>
           {signIn ? "New to Netflix? " : "Already a User? "}
           <span className="font-bold cursor-pointer">
             {signIn ? "Sign up now." : "Sign in now."}
